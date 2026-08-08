@@ -636,3 +636,37 @@
 
 #### Description
 - Consolidated navigation activity and indicator positioning onto the existing active-section state so Home, Services, Approach, and Booking resolve consistently from clicks, hashes, and scroll position. Home now removes every active underline, while Booking applies `aria-current="location"` and an animated underline to both desktop and mobile “Book Event” variants. Services and Approach retain the shared transform-based indicator without hover-driven movement. Added one `--nav-link-text` token shared by link text and all underline treatments, plus shared CTA pseudo-element styles for desktop and dropdown variants. Existing menu closing, focus handling, resize and font remeasurement, reduced motion, responsive layout, and keyboard semantics remain intact.
+
+---
+
+<div style="margin-bottom:1rem;color:white;">.</div>
+
+---
+<!--! ~=~=~=~=~=~ -->
+<!--!  CHANGE #19 -->
+<!--! ~=~=~=~=~=~ -->
+<!-- change title -->
+<div style="width:fit-content;margin-bottom:.5rem;padding:.5rem 1rem;background:#ff000010;border:3px solid #ff000040;border-radius:20px;font-size:1.8rem;font-weight:800;color:red;line-height:2.5rem;">
+  [C.19] Fix Vercel deployment build output
+</div>
+<!-- date & time / model -->
+<p style="width:fit-content;margin-top:.6rem;margin-left:.8rem;padding:.1rem .5rem;background:#00000010;border:1px solid #00000010;border-radius:100px;font-size:1.05rem;font-weight:500;font-style:italic;">
+  📅 2026-08-08 05:33:27 -0600 🤖 Unavailable
+</p>
+
+---
+
+#### Files changed:
+- `vercel.json`
+  - Added: 1-5
+  - Modified: None
+  - Deleted: None
+
+---
+
+#### Description
+- Added Vercel project settings so deployments run `next build` instead of the repository’s default `vinext build`. Vercel expects a Next.js `.next` output directory, while vinext targets Cloudflare Workers and leaves that directory absent. Local vinext development, Cloudflare builds, and existing tests remain unchanged.
+
+---
+
+<div style="margin-bottom:1rem;color:white;">.</div>

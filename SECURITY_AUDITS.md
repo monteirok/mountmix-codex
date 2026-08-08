@@ -1050,3 +1050,60 @@
 
 #### Verification performed
 - Ran ESLint and TypeScript successfully, completed the production build, passed all three rendered HTML and server-protection tests, verified the compiled production CSS contains both CTA underline selectors and active-state rules, and derived exact ranges from the working Git diff. Live browser state confirmed shared `aria-current` updates before the stale preview stylesheet was detected; fresh desktop/mobile visual verification remains blocked by the unavailable local-server approval.
+
+---
+
+<div style="margin-bottom:1rem;color:white;">.</div>
+
+---
+<!--! ~=~=~=~=~=~ -->
+<!--!  SECURITY AUDIT #19 -->
+<!--! ~=~=~=~=~=~ -->
+<!-- security audit title -->
+<div style="width:fit-content;margin-bottom:.5rem;padding:.5rem 1rem;background:#ff000010;border:3px solid #ff000040;border-radius:20px;font-size:1.8rem;font-weight:800;color:red;line-height:2.5rem;">
+  [S.19] Vercel deployment configuration audit
+</div>
+<!-- date & time / model -->
+<p style="width:fit-content;margin-top:.6rem;margin-left:.8rem;padding:.1rem .5rem;background:#00000010;border:1px solid #00000010;border-radius:100px;font-size:1.05rem;font-weight:500;font-style:italic;">
+  📅 2026-08-08 05:33:27 -0600 🤖 Unavailable
+</p>
+
+---
+
+#### Files changed:
+- `vercel.json`
+  - Added: 1-5
+  - Modified: None
+  - Deleted: None
+
+---
+
+#### Description
+- Audited the Vercel deployment override for build-command integrity, secret exposure, runtime boundary changes, and unintended modification of application trust boundaries. The change is limited to static deployment configuration.
+
+---
+
+#### Audit scope
+- Reviewed Vercel build command selection, framework declaration, interaction with the existing vinext build script, local Next.js build output, and absence of runtime or API changes.
+
+#### Threats and attack surfaces reviewed
+- Misconfigured build pipelines, accidental deployment of the wrong artifact, exposure of secrets in project configuration, weakened server-side controls, and unintended changes to booking validation, rate limiting, email submission, or request-origin checks.
+
+#### Findings and severity
+- No security vulnerabilities identified. The configuration contains only public build settings, no credentials or environment values, and no application code, API route, validation rule, or trust boundary was modified.
+
+#### Evidence
+- Source review confirms `vercel.json` sets `buildCommand` to `next build` and `framework` to `nextjs`. Local `next build` completed successfully and produced the expected `.next` output without changing runtime behavior.
+
+#### Remediation performed or recommended
+- Routed Vercel deployments through the standard Next.js build so the platform receives the output directory it expects. No additional security remediation is required.
+
+#### Residual risk
+- Vercel deployments now use the Next.js runtime instead of the vinext Cloudflare Worker path. Ensure production environment variables such as `RESEND_API_KEY` and `RESEND_FROM_EMAIL` are configured in Vercel project settings.
+
+#### Verification performed
+- Ran `next build` successfully, derived exact line ranges from the working Git diff, and validated audit log coverage. Cached log validation runs after this entry is staged.
+
+---
+
+<div style="margin-bottom:1rem;color:white;">.</div>
